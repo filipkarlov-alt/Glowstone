@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/glowstone/entity/GlowEntityAI.java b/src/main/java/org/glowstone/entity/GlowEntityAI.java
+--- a/src/main/java/org/glowstone/entity/GlowEntityAI.java
++++ b/src/main/java/org/glowstone/entity/GlowEntityAI.java
+@@ -45,6 +45,12 @@ public class GlowEntityAI extends EntityAI {
+         return false;
+     }
+ 
++    public boolean shouldAIExecute() {
++        Entity entity = this.owner;
++        if (entity instanceof GlowEntityLiving) {
++            return ((GlowEntityLiving) entity).getBrain().hasMemory(Key.createBooleanKey(MemoryModuleType.JOIN_GOSSIP));
++        }
++        return false;
++    }
+ }
