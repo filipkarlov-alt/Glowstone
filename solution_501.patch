@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/glowsdk/entities/physics/PhysicsEntity.java b/src/main/java/org/glowsdk/entities/physics/PhysicsEntity.java
+--- a/src/main/java/org/glowsdk/entities/physics/PhysicsEntity.java
++++ b/src/main/java/org/glowsdk/entities/physics/PhysicsEntity.java
+@@ -45,5 +45,15 @@
+     public void applyPhysics() {
+         // Apply physics logic here
+     }
++
++    public void handleGravity() {
++        if (getWorld().getGameRules().getBoolean("gravity")) {
++            setLocation(getX(), getY() - 0.08, getZ());
++        }
++    }
++
++    public void handleAirResistance() {
++        if (getAir() > 0) {
++            setAir(getAir() - 1);
++        }
++    }
+ }
